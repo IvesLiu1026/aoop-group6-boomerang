@@ -1,5 +1,4 @@
 import pygame
-# from pygame.locals import QUIT
 
 RESOLUTION = (1600, 900)
 CAPTION = "Boomerang"
