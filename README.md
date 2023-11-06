@@ -22,7 +22,7 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the ske
 
 ### Starter Kit 
 We forked some game repos in our organization.
-We also referenced some code snippet from (oop-python-nycu)[https://github.com/ARG-NCTU/oop-python-nycu] in this repo.
+We also referenced some code snippet from [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu) in this repo.
 
 ### Tools / packages we need so far
 - pygame
