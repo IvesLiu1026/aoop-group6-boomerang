@@ -1,24 +1,19 @@
 ## Group 6 AOOP Project
-Our objective is to make(clone) a retro/stupid/.io game using pygame and then add some features to it(currently we want to add AI players using RL and make this game multiplayer thru LAN).  
+This repo aims to make a clone of Boomerang Fu using pygame. We will put the skeleton of the game here.
 
-### The games we choose so far
-- boomerang.io(currently)  
-    - WASD
-    - Sprint
-    - Flash
-    - Auto attack
-    - Throw
+- Objective
+    - Movement    
+        - WASD
+        - Sprint
+        - Flash
+    - Weapons
+        - hands
+            - Auto attack      
+        - boomerang     
+            - Throw
     - Obstacle
-    - Multiplayer
-- Refs:  
-    - [Tankwar](https://github.com/CharlesPikachu/Games/tree/master/cpgames/core/games/tankwar)  
-    - [Football](https://github.com/CharlesPikachu/Games/tree/master/cpgames/core/games/bloodfootball)  
-    - [Boomerang fu](https://www.youtube.com/watch?v=2xfgPGCdCBU)  
-    - [Sword.io](https://github.com/codergautam/swordbattle.io?fbclid=IwAR2vRRDuaRNHPJH2v7DM0Br9vzpAZkwViEduoDyABFNB_KqFbyrg_kKRujM)  
-
-### RL related topics(we may implement it in this project)
-[Lunar Lander by OpenAI](https://medium.com/no-sliver-bullet/%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92-reinforcement-learning-lunar-lander-v2-1291d48b71c3)  
-[Deep Q learning](https://medium.com/pyladies-taiwan/reinforcement-learning-%E9%80%B2%E9%9A%8E%E7%AF%87-deep-q-learning-26b10935a745)
+    - UI Interaction(might be rough)
+    - ~~Multiplayer~~(later)
 
 ### Starter Kit 
 We have forked those game repos in our organization.  
@@ -32,10 +27,7 @@ But they're not related to the project we decided so far, so we may do it from s
 - ZeroTier (for LAN networking)
 
 ### To-dos
-- [x] Our objective (the game to make)
 - [ ] Skeleton
 - [ ] Description of this project
-- [ ] Multiplayer (LAN using sockets)
 - [ ] UML diagram
-- [ ] meet PEP8 / add docstring / write tests 
-- [ ] AI NPC
+- [ ] meet PEP8 / add docstring / write tests
