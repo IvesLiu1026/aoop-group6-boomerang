@@ -15,16 +15,21 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the ske
     - UI Interaction(might be rough)
     - ~~Multiplayer~~(later)
 
-### Starter Kit 
-We have forked those game repos in our organization.  
-But they're not related to the project we decided so far, so we may do it from scratch.  
+### Install dependencies
+```sh
+    pip install -r requirements.txt
+```
 
-### Tools / packages we may need
+### Starter Kit 
+We forked some game repos in our organization.
+We also referenced some code snippet from (oop-python-nycu)[https://github.com/ARG-NCTU/oop-python-nycu] in this repo.
+
+### Tools / packages we need so far
 - pygame
-- socket (built in tcp/udp or some other libraries)
-- sqlite (for database)
-- pytorch
-- ZeroTier (for LAN networking)
+- ~~socket (built in tcp/udp or some other libraries)~~
+- ~~sqlite (for database)~~
+- ~~pytorch~~
+- ~~ZeroTier (for LAN networking)~~
 
 ### To-dos
 - [ ] Skeleton
