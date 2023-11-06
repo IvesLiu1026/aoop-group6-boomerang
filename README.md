@@ -12,7 +12,7 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the ske
         - boomerang     
             - Throw
     - Obstacle
-    - UI Interaction(might be rough)
+    - UI Interaction(might be rough or just CLI)
     - ~~Multiplayer~~(later)
 
 ### Install dependencies
