@@ -21,8 +21,8 @@ pip install -r requirements.txt
 ```
 
 ### Starter Kit 
-We forked some game repos in our organization.
-We also referenced some code snippet from [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu) in this repo.
+We forked some reference repos in our organization.
+We also referenced some code snippet such as [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu) in this repo.
 
 ### Tools / packages we need so far
 - pygame
