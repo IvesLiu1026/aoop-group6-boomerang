@@ -17,7 +17,7 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the ske
 
 ### Install dependencies
 ```sh
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Starter Kit 
