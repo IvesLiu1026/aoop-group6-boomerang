@@ -17,12 +17,13 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the ske
 
 ### Install dependencies
 ```sh
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ### Starter Kit 
-We forked some reference repos in our organization.
-<!-- We also referenced some code snippet such as [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu) in this repo. -->
+We forked these references in our organization.
+[Zelda](https://github.com/clear-code-projects/Zelda)
+[oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu)
 
 ### Tools / packages we need so far
 - pygame
