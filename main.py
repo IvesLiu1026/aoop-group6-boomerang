@@ -1,25 +1,13 @@
 import pygame
 from default_config import *
 
+from player import Player
+
 config = {
     "resolution": RESOLUTION,
     "fps": FPS,
     "title": TITLE
 }
-
-class Player(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.image = pygame.Surface((50, 50))
-        self.image.fill((255, 0, 0))
-        self.rect = self.image.get_rect()
-        # self.rect.x, self.rect.y = 200, 200
-        self.rect.center = (200, 200)
-    
-    def update(self):
-        self.rect.x += 10 
-        if self.rect.x > config['resolution'][0]:
-            self.rect.x = 0
 
 class Game:
     def __init__(self, config):
@@ -38,28 +26,34 @@ class Game:
     
     def run(self):
         running = True
+        check_running = lambda: \
+            not (pygame.QUIT in 
+                 [event.type for event in pygame.event.get()])
         clock = pygame.time.Clock()
 
         all_sprites = pygame.sprite.Group()
-        player = Player()
+        obstacle_sprites = pygame.sprite.Group()
+        player = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites)
         all_sprites.add(player)
 
         while running:
             clock.tick(self.fps)
+            
+            running = check_running()
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT: 
-                    running = False
-                elif event.type == pygame.KEYDOWN:
-                    # WASD
-                    if event.key == pygame.K_w:
-                        ...
-                    elif event.key == pygame.K_a:
-                        ...
-                    elif event.key == pygame.K_s:
-                        ...
-                    elif event.key == pygame.K_d:
-                        ...
+            # for event in pygame.event.get():
+            #     if event.type == pygame.QUIT: 
+            #         running = False
+            #     elif event.type == pygame.KEYDOWN:
+            #         # WASD
+            #         if event.key == pygame.K_w:
+            #             ...
+            #         elif event.key == pygame.K_a:
+            #             ...
+            #         elif event.key == pygame.K_s:
+            #             ...
+            #         elif event.key == pygame.K_d:
+            #             ...
 
             all_sprites.update()
 
