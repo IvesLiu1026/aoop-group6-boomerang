@@ -22,8 +22,8 @@ $ pip install -r requirements.txt
 
 ### Starter Kit 
 We forked these references in our organization.  
-[Zelda](https://github.com/clear-code-projects/Zelda)  
-[oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu)  
+- [Zelda](https://github.com/clear-code-projects/Zelda)  
+- [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu)  
 
 ### Tools / packages we need so far
 - pygame
