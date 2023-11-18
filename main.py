@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys, button
 from default_config import *
 
 from player import Player
@@ -25,22 +25,24 @@ class Game:
         # self.current_time = 0
     
     def run(self):
+        
         running = True
         check_running = lambda: \
             not (pygame.QUIT in 
                  [event.type for event in pygame.event.get()])
         clock = pygame.time.Clock()
-
+        
         all_sprites = pygame.sprite.Group()
+        
         obstacle_sprites = pygame.sprite.Group()
-        player = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites)
-        all_sprites.add(player)
-
+        player0 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 0)
+        player1 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 1)
+        all_sprites.add(player0)
+        all_sprites.add(player1)
+        
         while running:
             clock.tick(self.fps)
-            
             running = check_running()
-
             # for event in pygame.event.get():
             #     if event.type == pygame.QUIT: 
             #         running = False
