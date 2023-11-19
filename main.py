@@ -35,8 +35,12 @@ class Game:
         all_sprites = pygame.sprite.Group()
         
         obstacle_sprites = pygame.sprite.Group()
-        player0 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 0)
-        player1 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 1)
+        player0 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 0, key_bindings = {
+            'up': pygame.K_w, 'down': pygame.K_s, 'left': pygame.K_a, 'right': pygame.K_d, 'attack': pygame.K_SPACE
+        })
+        player1 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 1, key_bindings = {
+            'up': pygame.K_UP, 'down': pygame.K_DOWN, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT, 'attack': pygame.K_RCTRL
+        })
         all_sprites.add(player0)
         all_sprites.add(player1)
         

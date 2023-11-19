@@ -36,13 +36,13 @@ class Entity(pygame.sprite.Sprite, ABC):
                     if self.direction.y < 0: # moving up
                         self.hitbox.top = sprite.hitbox.bottom
 
-    def wave_value(self):
-        value = sin(pygame.time.get_ticks())
+    # def wave_value(self):
+    #     value = sin(pygame.time.get_ticks())
 
-        if value >= 0:
-            return 255
-        else:
-            return 0
+    #     if value >= 0:
+    #         return 255
+    #     else:
+    #         return 0
 
     def animate(self):
         ...
