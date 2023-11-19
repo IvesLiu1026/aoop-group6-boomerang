@@ -1,4 +1,4 @@
 # default config for game
-RESOLUTION = (1600, 900)
+RESOLUTION = (1920, 1080)
 FPS = 60
 TITLE = "Boomerang"

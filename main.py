@@ -13,17 +13,18 @@ class Game:
     def __init__(self, config):
         pygame.init()
         pygame.display.set_caption(config['title'])
+        self.screen = pygame.Surface((1600, 900))
         self.window = pygame.display.set_mode(config['resolution'])
         self.fps = config['fps']
         
-        self.window.fill((255, 255, 255))
+        self.screen.fill((255, 255, 255))
         # self.clock = pygame.time.Clock()
         # self.running = True
         
         # self.playing = False
         # self.current_fps = 0
         # self.current_time = 0
-    
+
     def run(self):
         
         running = True
@@ -35,7 +36,7 @@ class Game:
         all_sprites = pygame.sprite.Group()
         
         obstacle_sprites = pygame.sprite.Group()
-        player0 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 0, key_bindings = {
+        player0 = Player(pos=(800, 450), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 0, key_bindings = {
             'up': pygame.K_w, 'down': pygame.K_s, 'left': pygame.K_a, 'right': pygame.K_d, 'attack': pygame.K_SPACE
         })
         player1 = Player(pos=(0, 0), groups=(all_sprites), obstacle_sprites=obstacle_sprites, num = 1, key_bindings = {
@@ -62,9 +63,12 @@ class Game:
             #             ...
 
             all_sprites.update()
-
-            self.window.fill((255, 255, 255))
-            all_sprites.draw(self.window)
+            
+            self.screen.fill((255, 255, 255))
+            all_sprites.draw(self.screen)
+            
+            resized_screen = pygame.transform.scale(self.screen, config['resolution']) 
+            self.window.blit(resized_screen, (0, 0))
             pygame.display.update()
 
         pygame.quit()
