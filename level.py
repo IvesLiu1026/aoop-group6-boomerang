@@ -41,14 +41,14 @@ class Level:
 
 	def create_map(self):
 		layouts = {
-			'boundary': import_csv_layout('../map/map_FloorBlocks.csv'),
-			'grass': import_csv_layout('../map/map_Grass.csv'),
-			'object': import_csv_layout('../map/map_Objects.csv'),
-			'entities': import_csv_layout('../map/map_Entities.csv')
+			'boundary': import_csv_layout('./map/map_FloorBlocks.csv'),
+			'grass': import_csv_layout('./map/map_Grass.csv'),
+			'object': import_csv_layout('./map/map_Objects.csv'),
+			'entities': import_csv_layout('./map/map_Entities.csv')
 		}
 		graphics = {
-			'grass': import_folder('../graphics/Grass'),
-			'objects': import_folder('../graphics/objects')
+			'grass': import_folder('./graphics/Grass'),
+			'objects': import_folder('./graphics/objects')
 		}
 
 		for style,layout in layouts.items():
@@ -167,7 +167,7 @@ class YSortCameraGroup(pygame.sprite.Group):
 		self.offset = pygame.math.Vector2()
 
 		# creating the floor
-		self.floor_surf = pygame.image.load('../graphics/tilemap/ground.png').convert()
+		self.floor_surf = pygame.image.load('./graphics/tilemap/ground.png').convert()
 		self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
 
 	def custom_draw(self,player):
