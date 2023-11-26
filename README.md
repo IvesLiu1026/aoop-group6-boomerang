@@ -21,9 +21,9 @@ $ pip install -r requirements.txt
 ```
 
 ### Starter Kit 
-We forked these references in our organization.  
-- [Zelda](https://github.com/clear-code-projects/Zelda)  
-- [oop-python-nycu](https://github.com/ARG-NCTU/oop-python-nycu)  
+We forked these references in our organization.
+
+This branch used '15 - fixes audio' from [Zelda](https://github.com/clear-code-projects/Zelda) as the starter kit.
 
 ### Tools / packages we need so far
 - pygame
