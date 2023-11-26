@@ -1,8 +1,8 @@
 # game setup
-WIDTH    = 1280	
-HEIGTH   = 720
-FPS      = 60
-TILESIZE = 64
+RESOLUTION 	= (1600, 900)
+FPS      	= 60
+TILESIZE 	= 64
+TITLE 		= "Boomerang"
 HITBOX_OFFSET = {
 	'player': -26,
 	'object': -40,

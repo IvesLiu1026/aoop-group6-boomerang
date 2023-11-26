@@ -7,11 +7,14 @@ class Game:
 
 		# general setup
 		pygame.init()
-		self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
-		pygame.display.set_caption('Zelda')
+		# self.screen = pygame.display.set_mode(RESOLUTION)
+		# pygame.display.set_caption('Zelda')
+		self.screen = pygame.Surface((1280, 720))
+		self.window = pygame.display.set_mode(RESOLUTION)
+		pygame.display.set_caption(TITLE)
 		self.clock = pygame.time.Clock()
 
-		self.level = Level()
+		self.level = Level(screen=self.screen)
 
 		# sound 
 		main_sound = pygame.mixer.Sound('./audio/main.ogg')
@@ -30,6 +33,8 @@ class Game:
 
 			self.screen.fill(WATER_COLOR)
 			self.level.run()
+			resized_screen = pygame.transform.scale(self.screen, RESOLUTION) 
+			self.window.blit(resized_screen, (0, 0))
 			pygame.display.update()
 			self.clock.tick(FPS)
 

@@ -13,14 +13,14 @@ from magic import MagicPlayer
 from upgrade import Upgrade
 
 class Level:
-	def __init__(self):
+	def __init__(self, screen):
 
 		# get the display surface 
-		self.display_surface = pygame.display.get_surface()
+		self.display_surface = screen
 		self.game_paused = False
 
 		# sprite group setup
-		self.visible_sprites = YSortCameraGroup()
+		self.visible_sprites = YSortCameraGroup(screen=screen)
 		self.obstacle_sprites = pygame.sprite.Group()
 
 		# attack sprites
@@ -32,8 +32,8 @@ class Level:
 		self.create_map()
 
 		# user interface 
-		self.ui = UI()
-		self.upgrade = Upgrade(self.player)
+		self.ui = UI(screen=screen)
+		self.upgrade = Upgrade(self.player, screen)
 
 		# particles
 		self.animation_player = AnimationPlayer()
@@ -157,11 +157,11 @@ class Level:
 		
 
 class YSortCameraGroup(pygame.sprite.Group):
-	def __init__(self):
+	def __init__(self, screen):
 
 		# general setup 
 		super().__init__()
-		self.display_surface = pygame.display.get_surface()
+		self.display_surface = screen
 		self.half_width = self.display_surface.get_size()[0] // 2
 		self.half_height = self.display_surface.get_size()[1] // 2
 		self.offset = pygame.math.Vector2()
