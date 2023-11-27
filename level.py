@@ -74,7 +74,8 @@ class Level:
 						if style == 'entities':
 							if col == '394':
 								self.player = Player(
-									(x,y),
+									(128,128),
+									# (x,y),
 									[self.visible_sprites],
 									self.obstacle_sprites,
 									self.create_attack,
@@ -85,6 +86,7 @@ class Level:
 								elif col == '391': monster_name = 'spirit'
 								elif col == '392': monster_name ='raccoon'
 								else: monster_name = 'squid'
+								
 								Enemy(
 									monster_name,
 									(x,y),
@@ -147,6 +149,8 @@ class Level:
 	def run(self):
 		self.visible_sprites.custom_draw(self.player)
 		self.ui.display(self.player)
+
+		debug(f'{self.player.rect.centerx}, {self.player.rect.centery}')
 		
 		if self.game_paused:
 			self.upgrade.display()
@@ -167,18 +171,18 @@ class YSortCameraGroup(pygame.sprite.Group):
 		self.offset = pygame.math.Vector2()
 
 		# creating the floor
-		self.floor_surf = pygame.image.load('./graphics/tilemap/ground.png').convert()
-		self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
+		# self.floor_surf = pygame.image.load('./graphics/tilemap/ground.png').convert()
+		# self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
 
 	def custom_draw(self,player):
 
 		# getting the offset 
-		self.offset.x = player.rect.centerx - self.half_width
-		self.offset.y = player.rect.centery - self.half_height
+		self.offset.x = 0 #player.rect.centerx - self.half_width
+		self.offset.y = 0 #player.rect.centery - self.half_height
 
 		# drawing the floor
-		floor_offset_pos = self.floor_rect.topleft - self.offset
-		self.display_surface.blit(self.floor_surf,floor_offset_pos)
+		# floor_offset_pos = self.floor_rect.topleft - self.offset
+		# self.display_surface.blit(self.floor_surf,floor_offset_pos)
 
 		# for sprite in self.sprites():
 		for sprite in sorted(self.sprites(),key = lambda sprite: sprite.rect.centery):
