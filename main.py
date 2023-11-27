@@ -2,6 +2,8 @@ import pygame, sys
 from settings import *
 from level import Level
 
+from debug import debug
+
 class Game:
 	def __init__(self):
 
@@ -33,6 +35,7 @@ class Game:
 
 			self.screen.fill(WATER_COLOR)
 			self.level.run()
+			debug(self.screen, '456')
 			resized_screen = pygame.transform.scale(self.screen, RESOLUTION) 
 			self.window.blit(resized_screen, (0, 0))
 			pygame.display.update()
