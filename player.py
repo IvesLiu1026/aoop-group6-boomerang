@@ -13,6 +13,7 @@ class Player(Entity):
 		# graphics setup
 		self.import_player_assets()
 		self.status = 'down'
+		self.dir = [2,2]
 
 		# movement 
 		self.attacking = False
@@ -72,20 +73,29 @@ class Player(Entity):
 			if keys[pygame.K_UP]:
 				self.direction.y = -1
 				self.status = 'up'
+				self.dir[0] = 0
+				
 			elif keys[pygame.K_DOWN]:
 				self.direction.y = 1
 				self.status = 'down'
+				self.dir[0] = 1
 			else:
 				self.direction.y = 0
+				self.dir[0] = 2
+			
 
 			if keys[pygame.K_RIGHT]:
 				self.direction.x = 1
 				self.status = 'right'
+				self.dir[1] = 0
 			elif keys[pygame.K_LEFT]:
 				self.direction.x = -1
 				self.status = 'left'
+				self.dir[1] = 1
 			else:
 				self.direction.x = 0
+				self.dir[1] = 2
+
 
 			# attack input 
 			if keys[pygame.K_SPACE]:
