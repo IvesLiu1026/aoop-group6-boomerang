@@ -13,7 +13,9 @@ class Game:
 		# pygame.display.set_caption('Zelda')
 		self.screen = pygame.Surface((2048, 1152)) # 32 * 18
 		# self.screen = pygame.Surface((1024, 576))
-		self.window = pygame.display.set_mode(RESOLUTION)
+		
+		self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) if FULLSCREEN \
+			else pygame.display.set_mode(RESOLUTION, 0)
 		pygame.display.set_caption(TITLE)
 		self.clock = pygame.time.Clock()
 
