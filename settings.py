@@ -1,6 +1,6 @@
 # game setup
 FULLSCREEN 	= False
-RESOLUTION 	= (2560, 1440)
+RESOLUTION 	= (1920, 1080)
 FPS      	= 60
 TILESIZE 	= 64
 TITLE 		= "Boomerang"

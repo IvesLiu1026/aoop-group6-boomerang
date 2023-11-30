@@ -171,8 +171,8 @@ class YSortGroup(pygame.sprite.Group):
 		# self.offset = pygame.math.Vector2()
 
 		# creating the floor
-		# self.floor_surf = pygame.image.load('./graphics/tilemap/ground.png').convert()
-		# self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
+		self.floor_surf = pygame.image.load('./graphics/tilemap/ground.png').convert()
+		self.floor_rect = self.floor_surf.get_rect(topleft = (0,0))
 
 	def custom_draw(self):
 
@@ -188,6 +188,10 @@ class YSortGroup(pygame.sprite.Group):
 		for sprite in sorted(self.sprites(),key = lambda sprite: sprite.rect.centery):
 			# offset_pos = sprite.rect.topleft # - self.offset
 			self.display_surface.blit(sprite.image, sprite.rect.topleft) #,offset_pos)
+			if sprite.rect.left > 2048:
+				continue
+			if sprite.rect.top > 1152:
+				break
 
 	def enemy_update(self,player):
 		enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'enemy']

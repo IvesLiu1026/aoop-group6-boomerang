@@ -21,6 +21,9 @@ class Game:
 
 		self.level = Level(screen=self.screen)
 
+		icon = pygame.image.load('./graphics/monsters/bamboo/attack/0.png')
+		pygame.display.set_icon(icon)
+
 		# sound 
 		main_sound = pygame.mixer.Sound('./audio/main.ogg')
 		main_sound.set_volume(0.5)
