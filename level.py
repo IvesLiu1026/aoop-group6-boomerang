@@ -11,6 +11,7 @@ from enemy import Enemy
 from particles import AnimationPlayer
 from magic import MagicPlayer
 from upgrade import Upgrade
+from boomerang import Boomerang
 
 class Level:
 	def __init__(self, screen):
@@ -95,20 +96,17 @@ class Level:
 									self.add_exp)
 
 	def create_attack(self):
-		
 		self.current_attack = Weapon(self.player,[self.visible_sprites,self.attack_sprites])
 
-	def create_magic(self,style,strength,cost):
-		if style == 'heal':
-			self.magic_player.heal(self.player,strength,cost,[self.visible_sprites])
-
-		if style == 'flame':
-			self.magic_player.flame(self.player,cost,[self.visible_sprites,self.attack_sprites])
+	def create_magic(self,style,strength):
+		self.magic_player.attack(self.player,[self.visible_sprites,self.obstacle_sprites,self.attack_sprites])
 
 	def destroy_attack(self):
 		if self.current_attack:
 			self.current_attack.kill()
 		self.current_attack = None
+		#if self.magic_player.current_magic():
+		#	self.magic_player.kill()
 
 	def player_attack_logic(self):
 		if self.attack_sprites:
@@ -153,6 +151,7 @@ class Level:
 		else:
 			self.visible_sprites.update()
 			self.visible_sprites.enemy_update(self.player)
+			self.visible_sprites.boomerang_update(self.player)
 			self.player_attack_logic()
 		
 
@@ -189,3 +188,8 @@ class YSortCameraGroup(pygame.sprite.Group):
 		enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'enemy']
 		for enemy in enemy_sprites:
 			enemy.enemy_update(player)
+
+	def boomerang_update(self,player):
+		boomerang_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'boom']
+		for boomerang in boomerang_sprites:
+			boomerang.boomerang_update(player)
