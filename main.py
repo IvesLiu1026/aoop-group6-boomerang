@@ -13,9 +13,14 @@ class Game:
 		# pygame.display.set_caption('Zelda')
 		self.screen = pygame.Surface((2048, 1152)) # 32 * 18
 		# self.screen = pygame.Surface((1024, 576))
-		
-		self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) if FULLSCREEN \
-			else pygame.display.set_mode(RESOLUTION, 0)
+
+		if FULLSCREEN:
+			self.resolution = pygame.display.list_modes()[0]
+			self.window = pygame.display.set_mode(self.resolution, pygame.FULLSCREEN)
+		else: 
+			self.resolution = RESOLUTION
+			self.window = pygame.display.set_mode(self.resolution, 0)
+        
 		pygame.display.set_caption(TITLE)
 		self.clock = pygame.time.Clock()
 
@@ -43,8 +48,8 @@ class Game:
 
 			self.screen.fill(WATER_COLOR)
 			self.level.run()
-			# debug('456')
-			resized_screen = pygame.transform.scale(self.screen, RESOLUTION) 
+			# debug(f'{self.resolution}')
+			resized_screen = pygame.transform.scale(self.screen, self.resolution) 
 			self.window.blit(resized_screen, (0, 0))
 			pygame.display.update()
 			self.clock.tick(FPS)

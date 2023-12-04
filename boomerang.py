@@ -23,7 +23,7 @@ class Boomerang(Entity):
 		#self.rect = self.image.get_rect(topleft = pos)
 		#self.hitbox = self.rect.inflate(0,-10)
 		self.attack_sprites = attack_sprites
-		self.obstacle_sprites = obstacle_sprites
+		# self.obstacle_sprites = obstacle_sprites
 		# stats
 		self.speed = 20
 		self.attack_damage = 100
