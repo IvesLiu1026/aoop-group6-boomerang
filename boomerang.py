@@ -19,7 +19,6 @@ class Boomerang(Entity):
 		#self.image = pygame.Surface((50, 50))
 		self.rect = self.image.get_rect(topleft = (x,y))
 		self.hitbox = self.rect.inflate(0,-10)
-		self.speed = 40
 		# movement
 		#self.rect = self.image.get_rect(topleft = pos)
 		#self.hitbox = self.rect.inflate(0,-10)
@@ -41,23 +40,18 @@ class Boomerang(Entity):
 		# sounds
 		self.hit_sound = pygame.mixer.Sound('./audio/hit.wav')
 		self.hit_sound.set_volume(0.6)
-	def movve(self,x,y):
+	def move(self,x,y):
 		self.hitbox.x = self.hitbox.x + x
 		self.hitbox.y = self.hitbox.y + y
 		self.rect.center = self.hitbox.center
 	
 	def getspeed(self,player):
-		if self.speed < 0:
+		if self.speed > 0:
+			self.speed = self.speed-0.5
+		else:
 			self.speed = -20
-		self.speed = self.speed-0.5
 	
-	def wave_value(self):
-		value = sin(pygame.time.get_ticks())
-		if value >= 0: 
-			return 255
-		else: 
-			return 0
-	
+
 	def get_next_attack(self):
 		return self.next_attack
 
@@ -76,10 +70,9 @@ class Boomerang(Entity):
 
 	def update(self):
 		self.check_death()
-		self.movve(self.direction.x,self.direction.y)
+		self.move(self.direction.x,self.direction.y)
 		#self.animate()
 
 	def boomerang_update(self,player):
-		print(self.speed)
 		self.getspeed(player)
 		self.actions(player,self.speed)

@@ -3,15 +3,6 @@ from settings import *
 from random import randint
 from entity import Entity
 from boomerang import Boomerang
-class boomerang(Entity):
-	def __init__(self, x, y):
-		pygame.sprite.Sprite.__init__(self)
-		self.sprite_type = 'boom'
-		full_path = f'./graphics/weapons/axe/full.png'
-		self.image = pygame.image.load(full_path).convert_alpha()
-		#self.image = pygame.Surface((50, 50))
-		self.rect = self.image.get_rect()
-		self.rect.center = (x, y)
 
 class MagicPlayer:
 	def __init__(self,animation_player):
@@ -45,4 +36,3 @@ class MagicPlayer:
 									groups,
 									groups[1],
 									groups[2],direction)
-				self.next_attack = self.boom.get_next_attack()
