@@ -148,7 +148,7 @@ class Level:
 		self.visible_sprites.custom_draw()#self.player)
 		self.ui.display(self.player)
 
-		debug(f'{self.player.rect.centerx}, {self.player.rect.centery}, {self.player.speed}')
+		debug(f'{self.player.rect.centerx}, {self.player.rect.centery}, {self.player.can_attack}')
 		
 		if self.game_paused:
 			# self.upgrade.display()

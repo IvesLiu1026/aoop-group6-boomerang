@@ -3,6 +3,7 @@ from settings import *
 from support import import_folder
 from entity import Entity
 from boomerang import Boomerang
+import math
 
 class Player(Entity):
 	def __init__(self,pos,groups,obstacle_sprites,create_attack,destroy_attack,create_magic):
@@ -18,10 +19,14 @@ class Player(Entity):
 
 		# movement 
 		self.attacking = False
-		self.attack_cooldown = 200
+		self.attack_cooldown = 100
 		self.attack_time = None
 		self.obstacle_sprites = obstacle_sprites
 
+		self.attack_interval = 500
+		self.can_attack_time = None
+		self.can_attack = True
+  
 		# weapon
 		self.create_attack = create_attack
 		self.destroy_attack = destroy_attack
@@ -96,17 +101,29 @@ class Player(Entity):
 			else:
 				self.direction.x = 0
 				self.dir[1] = 2
-
+    
+			if keys[pygame.K_LSHIFT]:
+				self.stats['speed'] = self.speed * 1.5
+				if self.can_attack:
+					self.can_attack_time = pygame.time.get_ticks()
+					self.can_attack = False
+			else:
+				self.stats['speed'] = self.speed
+				# self.can_attack = True
 
 			# attack input 
-			if keys[pygame.K_SPACE]:
+			if keys[pygame.K_SPACE] and self.can_attack:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
 				self.create_attack()
 				self.weapon_attack_sound.play()
+				
+				self.can_attack = False
+				self.can_attack_time = pygame.time.get_ticks()
+				# print(self.can_attack)
 
 			# projectile input 
-			if keys[pygame.K_LCTRL]:
+			if keys[pygame.K_LCTRL] and self.can_attack:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
 				style = list(magic_data.keys())[self.magic_index]
@@ -114,8 +131,9 @@ class Player(Entity):
 				cost = list(magic_data.values())[self.magic_index]['cost']
 				self.create_magic(style,strength)
 				#Boomerang(self.rect.centerx,self.rect.centery,self.groups,self.obstacle_sprites)
-				
 
+				self.can_attack = False
+				self.can_attack_time = pygame.time.get_ticks()
 
 			if keys[pygame.K_q] and self.can_switch_weapon:
 				self.can_switch_weapon = False
@@ -138,11 +156,6 @@ class Player(Entity):
 					self.magic_index = 0
 
 				self.magic = list(magic_data.keys())[self.magic_index]
-    
-			if keys[pygame.K_LSHIFT]:
-				self.stats['speed'] = self.speed * 1.5
-			else:
-				self.stats['speed'] = self.speed
 
 	def get_status(self):
 
@@ -165,6 +178,10 @@ class Player(Entity):
 
 	def cooldowns(self):
 		current_time = pygame.time.get_ticks()
+  
+		if not self.can_attack:
+			if current_time - self.can_attack_time >= self.attack_interval:
+				self.can_attack = True
 
 		if self.attacking:
 			if current_time - self.attack_time >= self.attack_cooldown + weapon_data[self.weapon]['cooldown']:
