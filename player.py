@@ -18,7 +18,7 @@ class Player(Entity):
 
 		# movement 
 		self.attacking = False
-		self.attack_cooldown = 400
+		self.attack_cooldown = 200
 		self.attack_time = None
 		self.obstacle_sprites = obstacle_sprites
 
@@ -40,11 +40,11 @@ class Player(Entity):
 
 		# stats
 		self.stats = {'health': 100,'energy':60,'attack': 10,'magic': 4,'speed': 5}
-		self.max_stats = {'health': 300, 'energy': 140, 'attack': 20, 'magic' : 10, 'speed': 10}
-		self.upgrade_cost = {'health': 100, 'energy': 100, 'attack': 100, 'magic' : 100, 'speed': 100}
+		# self.max_stats = {'health': 300, 'energy': 140, 'attack': 20, 'magic' : 10, 'speed': 10}
+		# self.upgrade_cost = {'health': 100, 'energy': 100, 'attack': 100, 'magic' : 100, 'speed': 100}
 		self.health = self.stats['health'] * 0.5
 		self.energy = self.stats['energy'] * 0.8
-		self.exp = 5000
+		# self.exp = 5000
 		self.speed = self.stats['speed']
 
 		# damage timer
@@ -105,7 +105,7 @@ class Player(Entity):
 				self.create_attack()
 				self.weapon_attack_sound.play()
 
-			# magic input 
+			# projectile input 
 			if keys[pygame.K_LCTRL]:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
@@ -138,6 +138,11 @@ class Player(Entity):
 					self.magic_index = 0
 
 				self.magic = list(magic_data.keys())[self.magic_index]
+    
+			if keys[pygame.K_LSHIFT]:
+				self.stats['speed'] = self.speed * 1.5
+			else:
+				self.stats['speed'] = self.speed
 
 	def get_status(self):
 
@@ -210,8 +215,8 @@ class Player(Entity):
 	def get_value_by_index(self,index):
 		return list(self.stats.values())[index]
 
-	def get_cost_by_index(self,index):
-		return list(self.upgrade_cost.values())[index]
+	# def get_cost_by_index(self,index):
+	# 	return list(self.upgrade_cost.values())[index]
 
 	def energy_recovery(self):
 		if self.energy < self.stats['energy']:

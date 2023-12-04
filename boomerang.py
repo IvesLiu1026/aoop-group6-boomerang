@@ -24,7 +24,7 @@ class Boomerang(Entity):
 		#self.rect = self.image.get_rect(topleft = pos)
 		#self.hitbox = self.rect.inflate(0,-10)
 		self.attack_sprites = attack_sprites
-		self.obstacle_sprites = obstacle_sprites
+		# self.obstacle_sprites = obstacle_sprites
 		# stats
 		self.speed = 1
 		self.attack_damage = 100
@@ -40,7 +40,7 @@ class Boomerang(Entity):
 		# sounds
 		self.hit_sound = pygame.mixer.Sound('./audio/hit.wav')
 		self.hit_sound.set_volume(0.6)
-	def movve(self,x,y):
+	def move(self,x,y):
 		self.hitbox.x = self.hitbox.x + x
 		self.hitbox.y = self.hitbox.y + y
 		self.rect.center = self.hitbox.center
@@ -69,7 +69,7 @@ class Boomerang(Entity):
 
 	def update(self):
 		self.check_death()
-		self.movve(self.direction.x,self.direction.y)
+		self.move(self.direction.x,self.direction.y)
 		#self.animate()
 		
 
