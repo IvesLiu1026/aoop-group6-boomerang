@@ -41,4 +41,4 @@ class MagicPlayer:
 									x,y,
 									groups,
 									groups[1],
-									groups[2])
+									groups[2],direction)
