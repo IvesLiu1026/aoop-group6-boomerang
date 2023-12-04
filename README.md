@@ -10,6 +10,10 @@ This repo aims to make a clone of Boomerang Fu using pygame. We will put the mai
         - Projectile
             - boomerang     
             - normal projectile
+    - Environment
+        - Death
+        - Respawn (?)
+    - Menu
     - Obstacle/Collision
     - UI(might be rough or just CLI)
     - ~~Multiplayer~~(later)
