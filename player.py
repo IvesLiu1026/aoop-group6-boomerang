@@ -113,7 +113,6 @@ class Player(Entity):
 				strength = list(magic_data.values())[self.magic_index]['strength'] + self.stats['magic']
 				cost = list(magic_data.values())[self.magic_index]['cost']
 				self.create_magic(style,strength)
-				#Boomerang(self.rect.centerx,self.rect.centery,self.groups,self.obstacle_sprites)
 				
 
 

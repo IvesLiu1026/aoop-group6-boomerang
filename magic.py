@@ -15,12 +15,15 @@ class boomerang(Entity):
 
 class MagicPlayer:
 	def __init__(self,animation_player):
+		self.next_attack = True
 		self.animation_player = animation_player
-		
 		self.sounds = {
 		'heal': pygame.mixer.Sound('./audio/heal.wav'),
 		'flame':pygame.mixer.Sound('./audio/Fire.wav')
 		}
+	def get_next_attack(self):
+		return self.next_attack
+	
 	def attack(self,player,groups):
 			self.sounds['flame'].play()
 			if player.dir == [2,0]: direction = pygame.math.Vector2(1,0) # right
@@ -42,3 +45,4 @@ class MagicPlayer:
 									groups,
 									groups[1],
 									groups[2],direction)
+				self.next_attack = self.boom.get_next_attack()

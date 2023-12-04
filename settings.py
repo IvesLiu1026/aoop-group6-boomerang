@@ -1,5 +1,5 @@
 # game setup
-FULLSCREEN 	= False
+FULLSCREEN 	= True
 RESOLUTION 	= (1920, 1080)
 FPS      	= 60
 TILESIZE 	= 64

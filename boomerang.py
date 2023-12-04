@@ -8,7 +8,7 @@ class Boomerang(Entity):
 	def __init__(self,x,y,groups,obstacle_sprites,attack_sprites,direc):
 		# general setup
 		super().__init__(groups)
-		self.sprite_type = 'boom'
+		self.sprite_type = 'projectile'
 		self.direc = direc
 		# graphics setup
 		#self.import_graphics(monster_name)
@@ -19,16 +19,17 @@ class Boomerang(Entity):
 		#self.image = pygame.Surface((50, 50))
 		self.rect = self.image.get_rect(topleft = (x,y))
 		self.hitbox = self.rect.inflate(0,-10)
-		self.speed = 20
+		self.speed = 40
 		# movement
 		#self.rect = self.image.get_rect(topleft = pos)
 		#self.hitbox = self.rect.inflate(0,-10)
 		self.attack_sprites = attack_sprites
 		self.obstacle_sprites = obstacle_sprites
 		# stats
-		self.speed = 1
+		self.speed = 20
 		self.attack_damage = 100
 		self.health = 100
+		self.next_attack = False
 
 		# player interaction
 		self.can_attack = True
@@ -45,14 +46,20 @@ class Boomerang(Entity):
 		self.hitbox.y = self.hitbox.y + y
 		self.rect.center = self.hitbox.center
 	
+	def getspeed(self,player):
+		if self.speed < 0:
+			self.speed = -20
+		self.speed = self.speed-0.5
 	
-
 	def wave_value(self):
 		value = sin(pygame.time.get_ticks())
 		if value >= 0: 
 			return 255
 		else: 
 			return 0
+	
+	def get_next_attack(self):
+		return self.next_attack
 
 
 	def actions(self,player,speed):
@@ -62,16 +69,17 @@ class Boomerang(Entity):
 			else:
 				self.direction.x = speed*self.direc.x
 				self.direction.y = speed*self.direc.y
-			self.direction.normalize()
 	def check_death(self):
-		if self.rect.centerx > 1600 or self.rect.centerx < 0 or self.rect.centery > 900 or self.rect.centery < 0:
+		if self.rect.centerx > 1960 or self.rect.centerx < 0 or self.rect.centery >  1060 or self.rect.centery < 0:
+			self.next_attack = True
 			self.kill()
 
 	def update(self):
 		self.check_death()
 		self.movve(self.direction.x,self.direction.y)
 		#self.animate()
-		
 
 	def boomerang_update(self,player):
+		print(self.speed)
+		self.getspeed(player)
 		self.actions(player,self.speed)
