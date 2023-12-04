@@ -39,6 +39,7 @@ class Level:
 		# particles
 		self.animation_player = AnimationPlayer()
 		self.magic_player = MagicPlayer(self.animation_player)
+		self.projectile = True
 
 	def create_map(self):
 		layouts = {
@@ -102,14 +103,15 @@ class Level:
 		self.current_attack = Weapon(self.player,[self.visible_sprites,self.attack_sprites])
 
 	def create_magic(self,style,strength):
-		self.magic_player.attack(self.player,[self.visible_sprites,self.obstacle_sprites,self.attack_sprites])
+		if self.projectile:
+			self.magic_player.attack(self.player,[self.visible_sprites,self.obstacle_sprites,self.attack_sprites])
+		self.projectile = self.magic_player.boom.get_next_attack()
+			
 
 	def destroy_attack(self):
 		if self.current_attack:
 			self.current_attack.kill()
 		self.current_attack = None
-		#if self.magic_player.current_magic():
-		#	self.magic_player.kill()
 
 	def player_attack_logic(self):
 		if self.attack_sprites:
@@ -145,7 +147,7 @@ class Level:
 		self.game_paused = not self.game_paused 
 
 	def run(self):
-		self.visible_sprites.custom_draw()#self.player)
+		self.visible_sprites.custom_draw()
 		self.ui.display(self.player)
 
 		debug(f'{self.player.rect.centerx}, {self.player.rect.centery}, {self.player.can_attack}')
@@ -200,6 +202,6 @@ class YSortGroup(pygame.sprite.Group):
 			enemy.enemy_update(player)
 
 	def boomerang_update(self,player):
-		boomerang_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'boom']
+		boomerang_sprites = [sprite for sprite in self.sprites() if hasattr(sprite,'sprite_type') and sprite.sprite_type == 'projectile']
 		for boomerang in boomerang_sprites:
 			boomerang.boomerang_update(player)
