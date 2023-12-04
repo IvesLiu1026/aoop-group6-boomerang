@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from support import import_folder
 from entity import Entity
+from boomerang import Boomerang
 
 class Player(Entity):
 	def __init__(self,pos,groups,obstacle_sprites,create_attack,destroy_attack,create_magic):
@@ -9,10 +10,11 @@ class Player(Entity):
 		self.image = pygame.image.load('./graphics/test/player.png').convert_alpha()
 		self.rect = self.image.get_rect(topleft = pos)
 		self.hitbox = self.rect.inflate(-6,HITBOX_OFFSET['player'])
-
+		self.groups = groups
 		# graphics setup
 		self.import_player_assets()
 		self.status = 'down'
+		self.dir = [2,2]
 
 		# movement 
 		self.attacking = False
@@ -72,20 +74,29 @@ class Player(Entity):
 			if keys[pygame.K_UP]:
 				self.direction.y = -1
 				self.status = 'up'
+				self.dir[0] = 0
+				
 			elif keys[pygame.K_DOWN]:
 				self.direction.y = 1
 				self.status = 'down'
+				self.dir[0] = 1
 			else:
 				self.direction.y = 0
+				self.dir[0] = 2
+			
 
 			if keys[pygame.K_RIGHT]:
 				self.direction.x = 1
 				self.status = 'right'
+				self.dir[1] = 0
 			elif keys[pygame.K_LEFT]:
 				self.direction.x = -1
 				self.status = 'left'
+				self.dir[1] = 1
 			else:
 				self.direction.x = 0
+				self.dir[1] = 2
+
 
 			# attack input 
 			if keys[pygame.K_SPACE]:
@@ -101,7 +112,10 @@ class Player(Entity):
 				style = list(magic_data.keys())[self.magic_index]
 				strength = list(magic_data.values())[self.magic_index]['strength'] + self.stats['magic']
 				cost = list(magic_data.values())[self.magic_index]['cost']
-				self.create_magic(style,strength,cost)
+				self.create_magic(style,strength)
+				#Boomerang(self.rect.centerx,self.rect.centery,self.groups,self.obstacle_sprites)
+				
+
 
 			if keys[pygame.K_q] and self.can_switch_weapon:
 				self.can_switch_weapon = False
