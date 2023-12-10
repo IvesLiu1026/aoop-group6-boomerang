@@ -104,7 +104,7 @@ class Level:
 
 	def create_magic(self,style,strength):
 		if self.projectile:
-			self.magic_player.attack(self.player,[self.visible_sprites,self.obstacle_sprites,self.attack_sprites])
+			self.magic_player.attack(self.player,[self.visible_sprites,self.attack_sprites])
 		self.projectile = self.magic_player.boom.get_next_attack()
 			
 

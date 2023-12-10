@@ -29,10 +29,9 @@ class MagicPlayer:
 			if((direction.x!=0.0)|(direction.y!=0.0)):
 				offset_x = (direction.x * 1) * TILESIZE
 				offset_y = (direction.y * 1) * TILESIZE
-				x = player.rect.centerx + offset_x + randint(-TILESIZE // 3, TILESIZE // 3)
-				y = player.rect.centery + offset_y + randint(-TILESIZE // 3, TILESIZE // 3)
+				x = player.rect.centerx + offset_x #+ randint(-TILESIZE // 3, TILESIZE // 3)
+				y = player.rect.centery + offset_y #+ randint(-TILESIZE // 3, TILESIZE // 3)
 				self.boom = Boomerang(
 									x,y,
 									groups,
-									groups[1],
-									groups[2],direction)
+									groups[1],direction,player)

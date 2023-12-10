@@ -228,6 +228,9 @@ class Player(Entity):
 		base_damage = self.stats['magic']
 		spell_damage = magic_data[self.magic]['strength']
 		return base_damage + spell_damage
+	
+	def get_projectile_damage(self):
+		return 99999999
 
 	def get_value_by_index(self,index):
 		return list(self.stats.values())[index]
